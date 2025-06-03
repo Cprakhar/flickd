@@ -1,0 +1,10 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+torch
+torchvision
+transformers
+fastapi
+faiss-cpu
+whisper
