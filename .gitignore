@@ -2,3 +2,6 @@ dataset.md
 tech-spec.md
 
 logs/
+notebooks/
+runs/
+data/detections/
