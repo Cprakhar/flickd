@@ -5,3 +5,5 @@ logs/
 notebooks/
 runs/
 data/detections/
+data/frames/
+data/crops/

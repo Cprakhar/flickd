@@ -2,7 +2,7 @@ import os
 import cv2
 from utils.logger import get_logger
 
-logger = get_logger(os.path.basename(__file__))
+logger = get_logger(__name__)
 
 def extract_frames(video_path, output_dir, frame_rate=1):
     """
@@ -14,6 +14,7 @@ def extract_frames(video_path, output_dir, frame_rate=1):
         output_dir (str): Directory where frames will be saved.
         frame_rate (int): Number of frames to extract per second.
     """
+    
 
     logger.info(f"Extracting frames from {video_path} at {frame_rate} fps...")
 

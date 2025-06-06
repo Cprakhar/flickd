@@ -3,7 +3,7 @@ import re
 from ultralytics import YOLO
 from utils.logger import get_logger
 
-logger = get_logger(os.path.basename(__file__))
+logger = get_logger(__name__)
 
 def detect_fashion_items(frame_path, yolo_model_path="models/yolov8n-best.pt", conf=0.3):
     """

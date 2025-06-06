@@ -2,7 +2,7 @@ import os
 import whisper
 from utils.logger import get_logger
 
-logger = get_logger(os.path.basename(__file__))
+logger = get_logger(__name__)
 
 def transcribe_audio(video_path, output_dir, model_size="base"):
     """

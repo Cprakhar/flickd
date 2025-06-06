@@ -1,0 +1,242 @@
+[
+  {
+    "frame": "frame_0010.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      220,
+      478,
+      401,
+      802
+    ],
+    "matched_product_id": "15350",
+    "match_type": "similar",
+    "confidence": 0.814386785030365,
+    "type": "top",
+    "color": "beige",
+    "title": "Viscose+ Off White Front Gathered Top"
+  },
+  {
+    "frame": "frame_0009.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      231,
+      546,
+      381,
+      734
+    ],
+    "matched_product_id": "15409",
+    "match_type": "similar",
+    "confidence": 0.8291769027709961,
+    "type": "trouser",
+    "color": "black",
+    "title": "Viscose+ Black High Waist Trousers"
+  },
+  {
+    "frame": "frame_0004.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      50,
+      958,
+      523,
+      322
+    ],
+    "matched_product_id": "15252",
+    "match_type": "similar",
+    "confidence": 0.815397322177887,
+    "type": "trouser",
+    "color": "grey",
+    "title": "Grey Wide Leg Denim"
+  },
+  {
+    "frame": "frame_0004.jpg",
+    "detection_idx": 2,
+    "bbox": [
+      506,
+      483,
+      72,
+      66
+    ],
+    "matched_product_id": "15009",
+    "match_type": "similar",
+    "confidence": 0.7644815444946289,
+    "type": "tshirt",
+    "color": "black",
+    "title": "Ribbed Lace Trim T-Shirt"
+  },
+  {
+    "frame": "frame_0007.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      116,
+      214,
+      374,
+      844
+    ],
+    "matched_product_id": "42109",
+    "match_type": "similar",
+    "confidence": 0.8350014686584473,
+    "type": "skirt",
+    "color": "teal",
+    "title": "Jaipur Block Print Slit Skirt"
+  },
+  {
+    "frame": "frame_0007.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      315,
+      1112,
+      100,
+      153
+    ],
+    "matched_product_id": "16809",
+    "match_type": "similar",
+    "confidence": 0.7573685646057129,
+    "type": "skirt",
+    "color": "ecru white",
+    "title": "Cotton Tiered Skirt"
+  },
+  {
+    "frame": "frame_0007.jpg",
+    "detection_idx": 2,
+    "bbox": [
+      239,
+      1096,
+      59,
+      146
+    ],
+    "matched_product_id": "15209",
+    "match_type": "similar",
+    "confidence": 0.8116113543510437,
+    "type": "trouser",
+    "color": "black",
+    "title": "Lace Detail Flared Pants"
+  },
+  {
+    "frame": "frame_0000.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      230,
+      688,
+      412,
+      591
+    ],
+    "matched_product_id": "42105",
+    "match_type": "similar",
+    "confidence": 0.8820008635520935,
+    "type": "skirt",
+    "color": "white",
+    "title": "Jaipur Block Print Flared Skirt"
+  },
+  {
+    "frame": "frame_0002.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      1,
+      616,
+      715,
+      664
+    ],
+    "matched_product_id": "15756",
+    "match_type": "similar",
+    "confidence": 0.8747355937957764,
+    "type": "dress",
+    "color": "red",
+    "title": "Cotton Flared Tier Dress"
+  },
+  {
+    "frame": "frame_0000.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      279,
+      416,
+      260,
+      288
+    ],
+    "matched_product_id": "118460",
+    "match_type": "similar",
+    "confidence": 0.8393522500991821,
+    "type": "top",
+    "color": "off white",
+    "title": "TruTencel One Shoulder Peplum Top"
+  },
+  {
+    "frame": "frame_0001.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      0,
+      590,
+      720,
+      690
+    ],
+    "matched_product_id": "17332",
+    "match_type": "similar",
+    "confidence": 0.8559744358062744,
+    "type": "dress",
+    "color": "white",
+    "title": "Printed Tiered Dress"
+  },
+  {
+    "frame": "frame_0008.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      26,
+      297,
+      598,
+      979
+    ],
+    "matched_product_id": "15742",
+    "match_type": "similar",
+    "confidence": 0.8704107999801636,
+    "type": "top",
+    "color": "multi",
+    "title": "Cotton Tie-Front Top"
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      61,
+      473,
+      584,
+      334
+    ],
+    "matched_product_id": "16806",
+    "match_type": "similar",
+    "confidence": 0.8126267194747925,
+    "type": "top",
+    "color": "ecru white",
+    "title": " Cotton Tiered Top"
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      308,
+      305,
+      168,
+      65
+    ],
+    "matched_product_id": "16066",
+    "match_type": "similar",
+    "confidence": 0.7504127025604248,
+    "type": "co-ord",
+    "color": "green",
+    "title": "Pleated Co-Ord"
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "detection_idx": 2,
+    "bbox": [
+      127,
+      896,
+      531,
+      384
+    ],
+    "matched_product_id": "17108",
+    "match_type": "similar",
+    "confidence": 0.8258156180381775,
+    "type": "co-ord",
+    "color": "black",
+    "title": "Off Shoulder Co-Ords"
+  }
+]

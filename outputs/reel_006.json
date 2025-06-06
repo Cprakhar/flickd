@@ -1,0 +1,162 @@
+[
+  {
+    "frame": "frame_0071.jpg",
+    "detection_idx": 2,
+    "bbox": [
+      79,
+      0,
+      641,
+      632
+    ],
+    "matched_product_id": "15773",
+    "match_type": "similar",
+    "confidence": 0.8710310459136963,
+    "type": "dress",
+    "color": "blue",
+    "title": "Cotton Flared Mini Dress"
+  },
+  {
+    "frame": "frame_0019.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      0,
+      0,
+      444,
+      555
+    ],
+    "matched_product_id": "15992",
+    "match_type": "similar",
+    "confidence": 0.8525822162628174,
+    "type": "dress",
+    "color": "green",
+    "title": "Cotton Sheath Mini Dress"
+  },
+  {
+    "frame": "frame_0063.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      0,
+      815,
+      719,
+      463
+    ],
+    "matched_product_id": "15259",
+    "match_type": "similar",
+    "confidence": 0.762810468673706,
+    "type": "shirt",
+    "color": "blue",
+    "title": "Denim Pintuck Crop Shirt"
+  },
+  {
+    "frame": "frame_0042.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      0,
+      954,
+      720,
+      326
+    ],
+    "matched_product_id": "15166",
+    "match_type": "similar",
+    "confidence": 0.8211992979049683,
+    "type": "trouser",
+    "color": "black",
+    "title": "Trucotton Regular Paperbag Waist Pants"
+  },
+  {
+    "frame": "frame_0047.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      135,
+      150,
+      147,
+      485
+    ],
+    "matched_product_id": "15209",
+    "match_type": "similar",
+    "confidence": 0.8278950452804565,
+    "type": "trouser",
+    "color": "black",
+    "title": "Lace Detail Flared Pants"
+  },
+  {
+    "frame": "frame_0033.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      174,
+      497,
+      430,
+      313
+    ],
+    "matched_product_id": "42077",
+    "match_type": "similar",
+    "confidence": 0.7772301435470581,
+    "type": "dress",
+    "color": "pink",
+    "title": "Linen+ Front Tie-Up Pintuck Midi Dress"
+  },
+  {
+    "frame": "frame_0031.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      170,
+      493,
+      440,
+      331
+    ],
+    "matched_product_id": "42113",
+    "match_type": "similar",
+    "confidence": 0.7658413052558899,
+    "type": "shirt",
+    "color": "white",
+    "title": "Jaipur Block Print Pin Tuck Top"
+  },
+  {
+    "frame": "frame_0049.jpg",
+    "detection_idx": 0,
+    "bbox": [
+      38,
+      408,
+      663,
+      872
+    ],
+    "matched_product_id": "15275",
+    "match_type": "similar",
+    "confidence": 0.7844866514205933,
+    "type": "dress",
+    "color": "blue",
+    "title": "Paneled Fitted Bodice Dress"
+  },
+  {
+    "frame": "frame_0050.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      0,
+      984,
+      624,
+      296
+    ],
+    "matched_product_id": "16468",
+    "match_type": "similar",
+    "confidence": 0.8586955666542053,
+    "type": "skirt",
+    "color": "twilight blue",
+    "title": " Denim Frayed Mini Skirt"
+  },
+  {
+    "frame": "frame_0053.jpg",
+    "detection_idx": 1,
+    "bbox": [
+      74,
+      528,
+      105,
+      183
+    ],
+    "matched_product_id": "17111",
+    "match_type": "similar",
+    "confidence": 0.7538144588470459,
+    "type": "dress",
+    "color": "black",
+    "title": "Ruffle-Detail Mini Dress"
+  }
+]
