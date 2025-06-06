@@ -1,9 +1,42 @@
 dataset.md
 tech-spec.md
 
-logs/
-notebooks/
-runs/
-data/detections/
-data/frames/
+# Backend/outputs and models
+backend/data/detections/
+backend/data/crops/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter and notebook outputs
+*.ipynb_checkpoints
+notebooks/*.ipynb_checkpoints/
+notebooks/*.zip
+
+# VSCode and editor files
+.vscode/
+*.code-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Node and frontend build artifacts
+frontend/node_modules/
+frontend/.next/
+frontend/.turbo/
+frontend/.env*
+frontend/.eslintcache
+
+# Misc
+*.log
+
+# Ignore all outputs and crops
 data/crops/
+
+# Ignore experiment and run folders
+runs/
+logs/
