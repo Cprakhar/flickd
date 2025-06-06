@@ -5,7 +5,7 @@ from utils.logger import get_logger
 
 logger = get_logger(os.path.basename(__file__))
 
-def detect_fashion_items(frame_path, classes, yolo_model_path="models/yolov8n.pt", conf=0.3):
+def detect_fashion_items(frame_path, yolo_model_path="models/yolov8n-best.pt", conf=0.3):
     """
     Detect fashion items in a given frame using a YOLOv11 model.
     Returns a list of detections: [{class_name, bbox (x, y, w, h), confidence, frame_number}]
@@ -25,8 +25,6 @@ def detect_fashion_items(frame_path, classes, yolo_model_path="models/yolov8n.pt
     for result in results:
         boxes = result.boxes
         for box in boxes:
-            if int(box.cls) not in classes:
-                continue
             x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
             w, h = x2 - x1, y2 - y1
             conf_score = float(box.conf[0])

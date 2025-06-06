@@ -7,13 +7,12 @@ from src.detect import detect_fashion_items
 
 
 class FlickdPipeline:
-    def __init__(self, videos_dir, frames_dir, transcripts_dir, detections_dir, classes, yolo_model_path="models/yolov8n.pt"):
+    def __init__(self, videos_dir, frames_dir, transcripts_dir, detections_dir, yolo_model_path="models/yolov8n-best.pt"):
         self.videos_dir = videos_dir
         self.frames_dir = frames_dir
         self.transcripts_dir = transcripts_dir
         self.detections_dir = detections_dir
         self.yolo_model_path = yolo_model_path
-        self.classes = classes
         self.logger = get_logger(os.path.basename(__file__))
 
     def extract_all_frames(self, frame_rate=1):
@@ -39,7 +38,7 @@ class FlickdPipeline:
             for file in files:
                 if file.endswith('.jpg'):
                     frame_path = os.path.join(root, file)
-                    detections = detect_fashion_items(frame_path, classes=self.classes, yolo_model_path=self.yolo_model_path, conf=conf)
+                    detections = detect_fashion_items(frame_path, yolo_model_path=self.yolo_model_path, conf=conf)
                     frame_name = os.path.splitext(file)[0]
                     video_name = os.path.basename(root)
                     save_dir = os.path.join(self.detections_dir, video_name)
@@ -66,20 +65,11 @@ class FlickdPipeline:
 
 if __name__ == "__main__":
 
-    if os.path.exists("data/category.json"):
-        with open("data/category.json", "r") as f:
-            classes = json.load(f)
-    else:
-        classes = None
-
-    print(classes)
-
     pipeline = FlickdPipeline(
         videos_dir='data/videos',
         frames_dir='data/frames',
         transcripts_dir='data/transcripts',
         detections_dir='data/detections', 
-        yolo_model_path="models/yolov8n.pt",
-        classes=classes
+        yolo_model_path="models/yolov8n-best.pt"
         )
     pipeline.run()
