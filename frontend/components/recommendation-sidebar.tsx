@@ -57,14 +57,14 @@ export function RecommendationSidebar({
                     Vibes
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {recommendations.vibes.map((vibe) => (
+                    {/* {recommendations.vibes.map((vibe) => (
                       <Badge key={vibe} variant="secondary" className="text-sm bg-purple-100 text-purple-700">
                         {vibe}
                       </Badge>
                     ))}
                     {recommendations.vibes.length === 0 && (
                       <p className="text-sm text-muted-foreground">No vibes detected.</p>
-                    )}
+                    )} */}
                   </div>
                 </div>
 
@@ -81,24 +81,20 @@ export function RecommendationSidebar({
                       >
                         <Image
                           src={product.image_url || "/placeholder.svg"}
-                          alt={product.name}
+                          alt={product.title || product.type || "Product"}
                           width={80}
                           height={100}
                           className="rounded-md object-cover aspect-[4/5]"
                         />
                         <div className="flex-1">
-                          <h4 className="font-medium text-sm">{product.name}</h4>
+                          <h4 className="font-medium text-sm">{product.title || product.type}</h4>
                           <p className="text-xs text-muted-foreground capitalize">
                             {product.type} - {product.color}
                           </p>
-                          {product.price && <p className="text-sm font-semibold text-teal-600 mt-1">{product.price}</p>}
                           <div className="mt-1">
                             <Badge variant={product.match_type === "exact" ? "default" : "outline"} className="text-xs">
                               {product.match_type === "exact" ? "Exact Match" : "Similar Item"}
                             </Badge>
-                            <span className="ml-2 text-xs text-muted-foreground">
-                              Confidence: {(product.confidence * 100).toFixed(0)}%
-                            </span>
                           </div>
                         </div>
                       </div>

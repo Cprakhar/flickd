@@ -6,7 +6,7 @@ from src.transcribe import transcribe_audio
 from src.detect import detect_fashion_items
 from src.match import match_products
 from utils.crop import crop_to_pil
-from src.config import VIDEOS_DIR, TRANSCRIPTS_DIR, DETECTIONS_DIR, YOLO_MODEL_PATH, FRAMES_DIR, OUTPUTS_DIR, CROPS_DIR
+from backend.config import VIDEOS_DIR, TRANSCRIPTS_DIR, DETECTIONS_DIR, YOLO_MODEL_PATH, FRAMES_DIR, OUTPUTS_DIR, CROPS_DIR
 
 
 logger = get_logger(__name__)

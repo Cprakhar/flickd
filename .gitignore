@@ -13,8 +13,10 @@ __pycache__/
 
 # Jupyter and notebook outputs
 *.ipynb_checkpoints
-notebooks/*.ipynb_checkpoints/
-notebooks/*.zip
+*/notebooks/*.ipynb_checkpoints/
+*/notebooks/*.zip
+*/notebooks/*.csv
+*/notebooks/*.json
 images/
 
 # VSCode and editor files

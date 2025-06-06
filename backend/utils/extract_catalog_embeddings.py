@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import torch
 from transformers import CLIPProcessor, CLIPModel, CLIPTokenizer
-from src.config import CATALOG_CSV_PATH, MODELS_DIR, CLIP_MODEL_NAME
+from backend.config import CATALOG_CSV_PATH, MODELS_DIR, CLIP_MODEL_NAME
 from utils.logger import get_logger
 from utils.download import download_image_to_pil
 import json

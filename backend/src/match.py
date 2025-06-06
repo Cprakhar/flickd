@@ -5,7 +5,7 @@ import json
 from PIL import Image
 from transformers import CLIPProcessor, CLIPModel, CLIPTokenizer
 import faiss
-from src.config import CATALOG_EMBEDDINGS_PATH, CATALOG_PRODUCT_IDS_PATH, CATALOG_CSV_PATH, CLIP_MODEL_NAME
+from backend.config import CATALOG_EMBEDDINGS_PATH, CATALOG_PRODUCT_IDS_PATH, CATALOG_CSV_PATH, CLIP_MODEL_NAME
 from utils.download import download_image_to_pil
 from utils.extract_catalog_embeddings import get_clip_embedding, extract_and_save_catalog_embeddings
 from utils.logger import get_logger
@@ -48,11 +48,15 @@ def match_products(crop, top_k=1, is_url=False):
         df = pd.read_csv(CATALOG_CSV_PATH)
         meta = {}
         for _, row in df.iterrows():
-            meta[str(row['id'])] = {
-                'title': row['title'],
-                'category': row['category'],
-                'color': row['color']
-            }
+            pid = str(row['id'])
+            # Only keep the first occurrence (first shot angle) for each product_id
+            if pid not in meta:
+                meta[pid] = {
+                    'title': row['title'],
+                    'category': row['category'],
+                    'color': row['color'],
+                    'image_url': row['image_url']
+                }
         return meta
 
     catalog_meta = load_catalog_metadata()
@@ -83,6 +87,7 @@ def match_products(crop, top_k=1, is_url=False):
             "confidence": float(score),
             "type": meta.get("category", None),
             "color": meta.get("color", None),
-            "title": meta.get("title", None)
+            "title": meta.get("title", None),
+            "image_url": meta.get("image_url", None)
         })
     return matches

@@ -10,7 +10,7 @@ import type { Video, RecommendationData, VideosApiResponse, RecommendationApiRes
 import { Button } from "@/components/ui/button"
 import { ArrowUp } from "lucide-react"
 
-const API_BASE_URL = "/api" // Adjust if your API is hosted elsewhere
+const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000" // Adjust if your API is hosted elsewhere
 
 export default function HomePage() {
   const [initialVideos, setInitialVideos] = useState<Video[]>([])
@@ -27,7 +27,7 @@ export default function HomePage() {
   const fetchVideos = useCallback(async (pageToFetch: number): Promise<Video[] | null> => {
     if (pageToFetch === null) return null
     try {
-      const response = await fetch(`${API_BASE_URL}/videos?page=${pageToFetch}`)
+      const response = await fetch(`/api/videos?page=${pageToFetch}`)
       if (!response.ok) {
         console.error("Failed to fetch videos:", response.statusText)
         setNextPage(null) // Stop trying if error
@@ -71,7 +71,7 @@ export default function HomePage() {
     setCurrentRecommendations(null) // Clear previous recommendations
     setIsSidebarOpen(true)
     try {
-      const response = await fetch(`${API_BASE_URL}/recommendations`, {
+      const response = await fetch(`${backendUrl}/api/recommendations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

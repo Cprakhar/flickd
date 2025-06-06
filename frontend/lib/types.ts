@@ -8,14 +8,13 @@ export interface Video {
 }
 
 export interface ProductRecommendation {
+  title: string
   type: string
   name: string // Added for display
   color: string
   matched_product_id: string
   match_type: "exact" | "similar"
-  confidence: number
   image_url: string // Added for display
-  price?: string // Added for display
 }
 
 export interface RecommendationData {
