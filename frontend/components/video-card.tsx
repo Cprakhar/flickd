@@ -33,32 +33,28 @@ export function VideoCard({ video, onRecommend, isIntersecting }: VideoCardProps
           const playPromise = videoElement.play()
           if (playPromise !== undefined) {
             playPromise
-              .then(() => setIsPlaying(true))
               .catch((error) => {
                 if (error.name !== "AbortError") {
                   console.error("Error attempting to play video (autoplay):", video.video_id, error)
                 }
-                setIsPlaying(false)
               })
           }
-        } else if (!isPlaying) {
-          setIsPlaying(true)
         }
       } else {
         if (!videoElement.paused) {
           videoElement.pause()
         }
-        if (isPlaying) setIsPlaying(false)
         // Collapse caption when video is not intersecting
         if (isCaptionExpanded) setIsCaptionExpanded(false)
       }
     }
-  }, [isIntersecting, video.video_id, isPlaying, isCaptionExpanded])
+  }, [isIntersecting, video.video_id, isCaptionExpanded])
 
   const handleVideoClick = () => {
     // If caption is expanded, clicking video area outside caption should perhaps collapse it?
     // For now, main video click toggles play/pause. Caption click is handled separately.
     togglePlay()
+    console.log("Video clicked:", video.video_id)
   }
 
   const togglePlay = () => {
@@ -68,17 +64,14 @@ export function VideoCard({ video, onRecommend, isIntersecting }: VideoCardProps
         const playPromise = videoElement.play()
         if (playPromise !== undefined) {
           playPromise
-            .then(() => setIsPlaying(true))
             .catch((error) => {
               if (error.name !== "AbortError") {
                 console.error("Error trying to play video (manual toggle):", error)
               }
-              setIsPlaying(false)
             })
         }
       } else {
         videoElement.pause()
-        setIsPlaying(false)
       }
     }
   }
@@ -118,6 +111,8 @@ export function VideoCard({ video, onRecommend, isIntersecting }: VideoCardProps
         playsInline
         className="w-full h-full object-cover"
         onClick={handleVideoClick}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
 
       {/* Main Overlay for UI elements */}

@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server"
 import type { Video, VideosApiResponse } from "@/lib/types"
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 const allVideos: Video[] = [
   {
     video_id: "reel_001",
-    video_url: "backend/data/videos/reel_001.mp4",
+    video_url: `${API_URL}/videos/reel_001.mp4`,
     caption: `We started with a feeling.
               Now it has a name.
 
@@ -19,7 +21,7 @@ const allVideos: Video[] = [
   },
   {
     video_id: "reel_002",
-    video_url: "backend/data/videos/reel_002.mp4",
+    video_url: `${API_URL}/videos/reel_002.mp4`,
     caption: `Sunkissed Summer has landed.
               Think golden hour, every hour.
 
@@ -33,7 +35,7 @@ const allVideos: Video[] = [
   },
   {
     video_id: "reel_003",
-    video_url: "backend/data/videos/reel_003.mp4",
+    video_url: `${API_URL}/videos/reel_003.mp4`,
     caption: `✨ Comment “LINK” and I'll DM you the details! 🤍 GRWM in this easy-breezy cotton vest + skirt set — made in linen, made for summer! 🌞`,
     hashtags: ["#GRWM", "#LinenSet", "#SummerOutfit", "#CoOrdSet", "#OOTDIndia", "#GRWMReel"],
     user_name: "explorer_gal",
@@ -41,7 +43,7 @@ const allVideos: Video[] = [
   },
   {
     video_id: "reel_004",
-    video_url: "backend/data/videos/reel_004.mp4",
+    video_url: `${API_URL}/videos/reel_004.mp4`,
     caption: `Ofcourse I'll get you flowers 🙆🏻‍♀️🙂‍↕️
 
               Spinning into summer with my favorite @virgio.official dress, you like it too? I got you girlie, comment ‘Link’ and I will slide into your dms with the link 🤜🤛
@@ -55,7 +57,7 @@ const allVideos: Video[] = [
   },
   {
     video_id: "reel_005",
-    video_url: "backend/data/videos/reel_005.mp4",
+    video_url: `${API_URL}/videos/reel_005.mp4`,
     caption: `Golden hour, all day long. ☀️
 
               Meet Sunkissed Summer, dresses that feel like a vacation, even when you're not on one.
@@ -69,7 +71,7 @@ const allVideos: Video[] = [
   },
   {
     video_id: "reel_006",
-    video_url: "backend/data/videos/reel_006.mp4",
+    video_url: `${API_URL}/videos/reel_006.mp4`,
     caption: `She's an advocate, co-founder of a bakery and a model, a Vogue Model. Zainika was born with down-syndrome but that never stopped her from chasing her passion and dreams. She's wearing Our Rani Udaymati Collection, and it suits her perfectly- the statement designs bring out her confident personality. She's strong, she's passionate and her main message to everyone out there is plain and simple- be kind!
               Featuring: 
               Chaukhdi Necklace in Oxidised 925 Silver
