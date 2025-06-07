@@ -33,6 +33,7 @@ frontend/.next/
 frontend/.turbo/
 frontend/.env*
 frontend/.eslintcache
+frontend/*.md
 
 # Misc
 *.log
@@ -43,3 +44,7 @@ data/crops/
 # Ignore experiment and run folders
 runs/
 logs/
+
+# Ignore .env files
+.env
+.env.local
