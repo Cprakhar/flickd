@@ -69,14 +69,14 @@ export function RecommendationSidebar({
                     Vibes
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {/* {recommendations.vibes.map((vibe) => (
+                    {recommendations.vibes.map((vibe) => (
                       <Badge key={vibe} variant="secondary" className="text-sm bg-purple-100 text-purple-700">
                         {vibe}
                       </Badge>
                     ))}
                     {recommendations.vibes.length === 0 && (
                       <p className="text-sm text-muted-foreground">No vibes detected.</p>
-                    )} */}
+                    )}
                   </div>
                 </div>
 

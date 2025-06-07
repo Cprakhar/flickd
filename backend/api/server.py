@@ -2,9 +2,10 @@ from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import main_pipeline
 import os
 import json
-from ..config import OUTPUTS_DIR
+from config import OUTPUTS_DIR, VIDEOS_DIR
 
 app = FastAPI()
 
@@ -29,21 +30,14 @@ def recommend(req: RecommendationRequest):
     # Use backend/outputs as the outputs directory
     output_path = os.path.join(OUTPUTS_DIR, f"{video_id}.json")
     if not os.path.exists(output_path):
-        return JSONResponse(status_code=404, content={"status": "error", "message": f"No output for {video_id}"})
+        main_pipeline.run_pipeline(req)
     with open(output_path) as f:
-        products = json.load(f)
-    
-    data = {
-        "video_id": video_id,
-        "products": products,
-        "vibes": []
-    }
-
+        data = json.load(f)
     return {"status": "success", "data": data}
 
 @app.get("/api/videos")
 def get_videos():
-    videos_dir = os.path.join("backend", "data", "videos")
+    videos_dir = VIDEOS_DIR
     if not os.path.exists(videos_dir):
         return {"status": "success", "data": []}
     videos = []
@@ -58,4 +52,4 @@ def get_videos():
 
 # Optionally, serve static files (videos, thumbnails) if needed
 from fastapi.staticfiles import StaticFiles
-app.mount("/videos", StaticFiles(directory="backend/data/videos"), name="videos")
+app.mount("/videos", StaticFiles(directory=VIDEOS_DIR), name="videos")

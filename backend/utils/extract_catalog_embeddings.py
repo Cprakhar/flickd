@@ -3,14 +3,13 @@ import numpy as np
 import pandas as pd
 import torch
 from transformers import CLIPProcessor, CLIPModel, CLIPTokenizer
-from backend.config import CATALOG_CSV_PATH, MODELS_DIR, CLIP_MODEL_NAME
 from utils.logger import get_logger
 from utils.download import download_image_to_pil
 import json
 
 logger = get_logger(__name__)
 
-def get_clip_embedding(image, clip_model, clip_processor):
+def get_clip_embedding(image, clip_model, clip_processor) -> np.ndarray | None:
     """
     Extracts CLIP embedding for a given PIL image.
     Args:
@@ -32,14 +31,11 @@ def get_clip_embedding(image, clip_model, clip_processor):
         logger.error(f"Failed to extract embedding: {e}", exc_info=True)
         raise
 
-def extract_and_save_catalog_embeddings():
+def extract_and_save_catalog_embeddings(df, models_dir, clip_model="openai/clip-vit-large-patch14"):
     logger.info("Loading CLIP model and processor...")
-    tokenizer = CLIPTokenizer.from_pretrained(CLIP_MODEL_NAME, use_fast=True)
-    clip_model = CLIPModel.from_pretrained(CLIP_MODEL_NAME)
-    clip_processor = CLIPProcessor.from_pretrained(CLIP_MODEL_NAME, tokenizer=tokenizer)
+    model, clip_processor = get_clip_processor_and_model(clip_model)
 
-    logger.info(f"Reading catalog from {CATALOG_CSV_PATH}")
-    df = pd.read_csv(CATALOG_CSV_PATH)
+    logger.info(f"Reading catalog from catalog.csv")
     image_paths = df['image_url'].tolist()
     product_ids = df['id'].tolist()
 
@@ -48,7 +44,7 @@ def extract_and_save_catalog_embeddings():
     for url, pid in zip(image_paths, product_ids):
         try:
             image = download_image_to_pil(url)
-            emb = get_clip_embedding(image, clip_model, clip_processor)
+            emb = get_clip_embedding(image, model, clip_processor)
             embeddings.append(emb)
             filtered_product_ids.append(pid)
         except Exception:
@@ -56,11 +52,17 @@ def extract_and_save_catalog_embeddings():
             continue
 
     embeddings = np.stack(embeddings)
-    os.makedirs(MODELS_DIR, exist_ok=True)
-    emb_path = os.path.join(MODELS_DIR, "catalog_clip_embeddings.npy")
-    ids_path = os.path.join(MODELS_DIR, "catalog_product_ids.json")
+    os.makedirs(models_dir, exist_ok=True)
+    emb_path = os.path.join(models_dir, "catalog_clip_embeddings.npy")
+    ids_path = os.path.join(models_dir, "catalog_product_ids.json")
     np.save(emb_path, embeddings)
 
     with open(ids_path, "w") as f:
         json.dump(filtered_product_ids, f)
     logger.info(f"Saved {len(embeddings)} embeddings to {emb_path} and product IDs to {ids_path}.")
+
+
+def get_clip_processor_and_model(clip_model='openai/clip-vit-large-patch14'):
+    model = CLIPModel.from_pretrained(clip_model)
+    clip_processor = CLIPProcessor.from_pretrained(clip_model)
+    return model, clip_processor

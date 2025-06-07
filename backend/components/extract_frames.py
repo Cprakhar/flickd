@@ -4,29 +4,26 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-def extract_frames(video_path, output_dir, frame_rate=1):
+def extract_frames(video_id, video_capture, output_dir, frame_rate=1):
     """
     Extracts frames from a video at the specified frame rate (frames per second).
     Saves frames as JPEGs in output_dir/video_basename/.
 
     Args:
-        video_path (str): Path to the input video file.
+        video_id (str): ID of the video file.
+        video_capture (cv2.VideoCapture): Object of cv2.VideoCapture
         output_dir (str): Directory where frames will be saved.
         frame_rate (int): Number of frames to extract per second.
     """
     
 
-    logger.info(f"Extracting frames from {video_path} at {frame_rate} fps...")
+    logger.info(f"Extracting frames from {video_id} at {frame_rate} fps...")
 
-    video_name = os.path.splitext(os.path.basename(video_path))[0]
-    save_dir = os.path.join(output_dir, video_name)
+    save_dir = os.path.join(output_dir, video_id)
     os.makedirs(save_dir, exist_ok=True)
 
-    cap = cv2.VideoCapture(video_path)
-    if not cap.isOpened():
-        logger.error(f"Failed to open video file: {video_path}")
-        return []
-    
+    cap = video_capture
+
     fps = cap.get(cv2.CAP_PROP_FPS)
     frame_interval = int(fps / frame_rate) if fps > 0 else 1
 
@@ -48,6 +45,6 @@ def extract_frames(video_path, output_dir, frame_rate=1):
 
     cap.release()
 
-    logger.info(f"Extracted {len(frame_paths)} frames from {video_path} to {save_dir}.")
+    logger.info(f"Extracted {len(frame_paths)} frames from {video_id} to {save_dir}.")
     return frame_paths
 

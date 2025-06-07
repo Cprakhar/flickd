@@ -5,7 +5,7 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-def detect_fashion_items(frame_path, yolo_model_path="models/yolov8n-best.pt", conf=0.3):
+def detect_fashion_items(frame_path, yolo_model_path="yolov8n.pt", conf=0.3):
     """
     Detect fashion items in a given frame using a YOLOv11 model.
     Returns a list of detections: [{class_name, bbox (x, y, w, h), confidence, frame_number}]
@@ -15,6 +15,8 @@ def detect_fashion_items(frame_path, yolo_model_path="models/yolov8n-best.pt", c
         model_path (str): Path to the YOLOv11 model weights.
         conf (float): Confidence threshold for detections.
     """
+
+    logger.info(f"Detecting fashion items in frame: {frame_path} with model: {yolo_model_path}...")
 
     match = re.search(r'frame_(\d+)', os.path.basename(frame_path))
     frame_number = int(match.group(1)) if match else -1

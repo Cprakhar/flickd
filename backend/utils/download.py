@@ -1,7 +1,9 @@
 import requests
 from io import BytesIO
 from PIL import Image
+import tempfile
 from utils.logger import get_logger
+import cv2
 
 logger = get_logger(__name__)
 
@@ -24,3 +26,28 @@ def download_image_to_pil(url):
         return img
     except Exception as e:
         logger.error(f"Failed to download image from {url}: {e}", exc_info=True)
+
+
+def download_video(video_url):
+    """
+    Downloads a video from a URL and returns a cv2.VideoCapture object.
+    Args:
+        video_url (str): The video URL.
+    Returns:
+        cv2.VideoCapture: The video capture object.
+    Raises:
+        Exception: If the video cannot be downloaded or opened.
+    """
+
+    try:
+        logger.info(f"Downloading video from {video_url}...")
+        response = requests.get(video_url, timeout=10)
+        response.raise_for_status()
+        with tempfile.NamedTemporaryFile(suffix='.mp4', delete=False) as temp_video_file:
+            temp_video_file.write(response.content)
+            temp_video_file.flush()
+            video_capture = cv2.VideoCapture(temp_video_file.name)
+            return (video_capture, temp_video_file)
+    except Exception as e:
+        logger.error(f"Failed to download video from {video_url}: {e}", exc_info=True)
+        raise
