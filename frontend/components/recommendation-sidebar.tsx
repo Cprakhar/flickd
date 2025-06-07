@@ -16,6 +16,9 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import type { RecommendationData } from "@/lib/types"
 import { X, ShoppingBag, Tag } from "lucide-react"
+import { useState } from "react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog"
+import { Maximize } from "lucide-react"
 
 interface RecommendationSidebarProps {
   isOpen: boolean
@@ -30,6 +33,15 @@ export function RecommendationSidebar({
   recommendations,
   isLoading,
 }: RecommendationSidebarProps) {
+  const [enlargedImageSrc, setEnlargedImageSrc] = useState<string | null>(null)
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+
+  const handleImageClick = (imageUrl: string) => {
+    setEnlargedImageSrc(imageUrl)
+    setIsImageModalOpen(true)
+  }
+
+
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-md p-0 flex flex-col">
@@ -79,13 +91,21 @@ export function RecommendationSidebar({
                         key={product.matched_product_id}
                         className="flex items-start space-x-3 p-3 border rounded-lg bg-card"
                       >
-                        <Image
+                        <div
+                          className="relative group cursor-pointer"
+                          onClick={() => handleImageClick(product.image_url || "/placeholder.svg")}
+                        >
+                          <Image
                           src={product.image_url || "/placeholder.svg"}
                           alt={product.title || product.type || "Product"}
                           width={80}
                           height={100}
                           className="rounded-md object-cover aspect-[4/5]"
                         />
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-md">
+                            <Maximize className="h-6 w-6 text-white" />
+                          </div>
+                        </div>
                         <div className="flex-1">
                           <h4 className="font-medium text-sm">{product.title || product.type}</h4>
                           <p className="text-xs text-muted-foreground capitalize">
@@ -111,13 +131,38 @@ export function RecommendationSidebar({
           </div>
         </ScrollArea>
 
-        <SheetFooter className="p-6 pt-2 border-t">
-          <SheetClose asChild>
-            <Button variant="outline" className="w-full">
-              <X className="mr-2 h-4 w-4" /> Close
-            </Button>
-          </SheetClose>
-        </SheetFooter>
+        {enlargedImageSrc && (
+          <Dialog open={isImageModalOpen} onOpenChange={setIsImageModalOpen}>
+            <DialogContent className="sm:max-w-[80vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw] p-2 bg-background">
+              <DialogHeader className="p-0">
+                <DialogTitle className="sr-only">Enlarged Product Image</DialogTitle>
+                <DialogClose>
+                  <span className="sr-only">Close</span>
+                </DialogClose>
+              </DialogHeader>
+              <div className="flex justify-center items-center max-h-[80vh]">
+                <Image
+                  src={enlargedImageSrc || "/placeholder.svg"}
+                  alt="Enlarged product"
+                  width={800}
+                  height={1000}
+                  className="rounded-md object-contain max-w-full max-h-[75vh]"
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
+        
+        {!isImageModalOpen && (
+          <SheetFooter className="p-6 pt-2 border-t">
+            <SheetClose asChild>
+              <Button variant="outline" className="w-full">
+                <X className="mr-2 h-4 w-4" /> Close
+              </Button>
+            </SheetClose>
+          </SheetFooter>
+        )}
       </SheetContent>
     </Sheet>
   )
