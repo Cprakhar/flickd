@@ -14,6 +14,7 @@ from config import FRAMES_DIR, YOLO_MODEL_PATH, TRANSCRIPTS_DIR, CLIP_MODEL_NAME
 from utils.checks import file_exists, directory_exists
 
 logger = get_logger(__name__)
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", None)
 
 
 class FlickdPipeline:
@@ -86,7 +87,7 @@ class FlickdPipeline:
             with open(transcript_path, 'r') as f:
                 transcript_file = f.readlines()
 
-            vibes = vibe_classification(hashtags, caption, transcript_file, groq_api_key='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', vibes_list=vibes_list)
+            vibes = vibe_classification(hashtags, caption, transcript_file, groq_api_key=GROQ_API_KEY, vibes_list=vibes_list)
 
             # Detect fashion items and match products
             frames_path = os.path.join(self.frames_dir, video_id)
