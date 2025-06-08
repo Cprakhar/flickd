@@ -1,0 +1,25 @@
+You are an AI that returns only a Python list.
+
+Given the following list of fashion vibes and their descriptions:
+{vibe_names}
+
+And the following content (hashtags, captions, transcript):
+{vibe_descriptions}
+
+-----
+{texts}
+-----
+
+Identify and return the most relevant vibes from the list above. Return your response as a valid Python list of strings (max length of list is 3), containing only the matching vibes.
+
+Example output format:
+['Vibe2', 'Vibe2', 'Vibe3']
+Don't include any other text or explanations, just the list of vibes.
+
+Wrong output example:
+['Based on the content', "I would identify the most relevant vibes as:\n\n['Coquette'", "'Cottagecore'", "'Boho'", "'Party Glam']\n\nThese vibes match the language and aesthetic described in the content", 'which includes references to golden hour']
+Explanation: This output is incorrect because it includes additional text and explanations, which are not allowed. The correct output should only be a list of vibes without any extra commentary.
+
+Correct output example:
+['Vibe2', 'Vibe2', 'Vibe3']
+This output is correct because it only contains the list of vibes without any additional text or explanations.

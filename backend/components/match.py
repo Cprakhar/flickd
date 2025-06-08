@@ -33,41 +33,43 @@ def match_product(detection, frame_file, catalog_embeddings, catalog_products_id
         top_k (int): Number of top matches to return.
     Returns:
         list: Top K matched products with their IDs and similarity scores.
+    Logs matching progress and errors. Returns an empty list if matching fails.
     """
-    
-    # Crop image, get its embeddings and load the CLIP processor and model
+    try:
+        logger.info(f"Matching products from catalog with detections items from {frame_file}...")
+        cropped_image = crop_to_pil(frame_file, detection["bbox"])
+        model, clip_processor = get_clip_processor_and_model(clip_model)
+        cropped_image_embeddings = get_clip_embedding(cropped_image, model, clip_processor)
+        cropped_image_embeddings = cropped_image_embeddings.reshape(1, -1)
 
-    logger.info(f"Matching products from catalog with detections items from {frame_file}...")
-    cropped_image = crop_to_pil(frame_file, detection["bbox"])
-    model, clip_processor = get_clip_processor_and_model(clip_model)
-    cropped_image_embeddings = get_clip_embedding(cropped_image, model, clip_processor)
-    cropped_image_embeddings = cropped_image_embeddings.reshape(1, -1)
+        # Build FAISS index
+        faiss_index = faiss.IndexFlatIP(catalog_embeddings.shape[1])
+        faiss_index.add(catalog_embeddings)
 
-    # Build FAISS index
-    faiss_index = faiss.IndexFlatIP(catalog_embeddings.shape[1])
-    faiss_index.add(catalog_embeddings)
+        catalog_meta = load_meta(catalog_csv)
 
-    catalog_meta = load_meta(catalog_csv)
-
-    D, I = faiss_index.search(cropped_image_embeddings, top_k)
-    matches = []
-    for score, idx in zip(D[0], I[0]):
-        product_id = catalog_products_id[idx]
-        meta = catalog_meta.get(str(product_id), {})
-        if score < 0.75:
-            continue
-        match_type = (
-            "exact" if score > 0.9 else
-            "similar"
-        )
-        matches.append({
-            "matched_product_id": product_id,
-            "match_type": match_type,
-            "confidence": round(float(score), 3),
-            "type": meta.get("category", None),
-            "color": meta.get("color", None),
-            "title": meta.get("title", None),
-            "image_url": meta.get("image_url", None)
-        })
-    logger.info(f"{len(matches)} items got matched with the {frame_file}")
-    return matches
+        D, I = faiss_index.search(cropped_image_embeddings, top_k)
+        matches = []
+        for score, idx in zip(D[0], I[0]):
+            product_id = catalog_products_id[idx]
+            meta = catalog_meta.get(str(product_id), {})
+            if score < 0.75:
+                continue
+            match_type = (
+                "exact" if score > 0.9 else
+                "similar"
+            )
+            matches.append({
+                "matched_product_id": product_id,
+                "match_type": match_type,
+                "confidence": round(float(score), 3),
+                "type": meta.get("category", None),
+                "color": meta.get("color", None),
+                "title": meta.get("title", None),
+                "image_url": meta.get("image_url", None)
+            })
+        logger.info(f"{len(matches)} items got matched with the {frame_file}")
+        return matches
+    except Exception as e:
+        logger.error(f"Product matching failed for frame {frame_file}: {e}", exc_info=True)
+        return []

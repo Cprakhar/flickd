@@ -1,0 +1,54 @@
+{
+  "video_id": "reel_005",
+  "vibes": [
+    "cottagecore",
+    "party glam"
+  ],
+  "products": [
+    {
+      "matched_product_id": "15409",
+      "match_type": "similar",
+      "confidence": 0.799,
+      "type": "trouser",
+      "color": "black",
+      "title": "Viscose+ Black High Waist Trousers",
+      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/13th_NOV_2024_Virgio-1791_512x.jpg?v=1734705526"
+    },
+    {
+      "matched_product_id": "17332",
+      "match_type": "similar",
+      "confidence": 0.879,
+      "type": "dress",
+      "color": "white",
+      "title": "Printed Tiered Dress",
+      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/21MayVirgio-1033_512x.jpg?v=1717059725"
+    },
+    {
+      "matched_product_id": "15209",
+      "match_type": "similar",
+      "confidence": 0.778,
+      "type": "trouser",
+      "color": "black",
+      "title": "Lace Detail Flared Pants",
+      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/4th_DEC_2024_Virgio-0303_512x.jpg?v=1739445011"
+    },
+    {
+      "matched_product_id": "42105",
+      "match_type": "similar",
+      "confidence": 0.872,
+      "type": "skirt",
+      "color": "white",
+      "title": "Jaipur Block Print Flared Skirt",
+      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/8102355_512x.jpg?v=1739775891"
+    },
+    {
+      "matched_product_id": "42109",
+      "match_type": "similar",
+      "confidence": 0.84,
+      "type": "skirt",
+      "color": "teal",
+      "title": "Jaipur Block Print Slit Skirt",
+      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/8102414_512x.jpg?v=1739775891"
+    }
+  ]
+}
