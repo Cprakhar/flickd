@@ -84,18 +84,49 @@ export default function HomePage() {
       if (!response.ok) {
         throw new Error(`API error: ${response.statusText}`)
       }
-      const result: RecommendationApiResponse = await response.json()
+      const result = await response.json()
       if (result.status === "success") {
         setCurrentRecommendations(result.data)
-      } else {
-        console.error("Error fetching recommendations:", result.message)
-        // Optionally show an error in the sidebar
-        setCurrentRecommendations({ video_id: video.video_id, vibes: ["Error"], products: [] })
+        setIsRecommendationLoading(false)
+        return
       }
+      // If status is pending, poll the status endpoint
+      if (result.status === "pending" && result.video_id) {
+        const pollStatus = async () => {
+          let attempts = 0
+          const maxAttempts = 60 * 2 // e.g. 60 x 1s = 1 minute
+          while (attempts < maxAttempts) {
+            await new Promise((res) => setTimeout(res, 1000))
+            const statusRes = await fetch(`${backendUrl}/api/recommendations/status/${result.video_id}`)
+            if (!statusRes.ok) {
+              attempts++
+              continue
+            }
+            const statusJson = await statusRes.json()
+            if (statusJson.status === "success") {
+              setCurrentRecommendations(statusJson.data)
+              setIsRecommendationLoading(false)
+              return
+            } else if (statusJson.status === "error") {
+              setCurrentRecommendations({ video_id: video.video_id, vibes: ["Error"], products: [] })
+              setIsRecommendationLoading(false)
+              return
+            }
+            // else: still running, keep polling
+            attempts++
+          }
+          // Timed out
+          setCurrentRecommendations({ video_id: video.video_id, vibes: ["Timeout"], products: [] })
+          setIsRecommendationLoading(false)
+        }
+        pollStatus()
+        return
+      }
+      // Unknown state
+      setCurrentRecommendations({ video_id: video.video_id, vibes: ["Unknown Error"], products: [] })
     } catch (error) {
       console.error("Error fetching recommendations:", error)
       setCurrentRecommendations({ video_id: video.video_id, vibes: ["Network Error"], products: [] })
-    } finally {
       setIsRecommendationLoading(false)
     }
   }

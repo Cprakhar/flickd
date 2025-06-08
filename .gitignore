@@ -37,6 +37,7 @@ frontend/*.md
 
 # Misc
 *.log
+*.status
 
 # Ignore all outputs and crops
 data/crops/
