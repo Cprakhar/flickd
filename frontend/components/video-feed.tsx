@@ -100,13 +100,13 @@ export function VideoFeed({ initialVideos, onLoadMore, onRecommend }: VideoFeedP
   }, [videos.length])
 
   return (
-    <div className="h-[calc(100svh-80px)] md:h-[calc(100svh-100px)] w-full overflow-y-auto snap-y snap-mandatory scroll-smooth">
+    <div className="h-[calc(100svh-80px)] md:h-[calc(100svh-100px)] w-full overflow-y-auto snap-y snap-mandatory scroll-smooth mt-12 mb-4 flex flex-col items-center">
       {videos.map((video, index) => (
         <div
           key={video.video_id}
-          ref={(el) => (videoCardRefs.current[index] = el)}
+          ref={(el) => { videoCardRefs.current[index] = el; }}
           data-video-id={video.video_id}
-          className="snap-center" // Ensures each video card snaps into view
+          className="snap-center"
         >
           <VideoCard video={video} onRecommend={onRecommend} isIntersecting={video.video_id === visibleVideoId} />
         </div>

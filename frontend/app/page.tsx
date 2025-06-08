@@ -162,11 +162,10 @@ export default function HomePage() {
   }
 
   return (
-    <div ref={feedContainerRef} className="h-screen flex flex-col bg-neutral-900 text-white">
-      {/* Header (Optional) */}
-      <header className="h-16 md:h-20 bg-neutral-900 border-b border-neutral-700 flex items-center justify-center sticky top-0 z-20">
-        <h1 className="text-2xl font-bold text-teal-500">Flickd</h1>
-      </header>
+    <div ref={feedContainerRef} className="h-screen flex flex-col bg-neutral-900 text-white mx-auto">
+      {/* <header className="hidden sm:flex h-16 md:h-20 bg-neutral-900 border-b border-neutral-700 items-center justify-center sticky top-0 z-20">
+        <h1 className="text-3xl font-bold" style={{ color: '#8154a4' }}>Flickd</h1>
+      </header> */}
 
       <main className="flex-1 overflow-hidden">
         <VideoFeed initialVideos={initialVideos} onLoadMore={handleLoadMore} onRecommend={handleRecommend} />
@@ -184,7 +183,7 @@ export default function HomePage() {
           onClick={scrollToTop}
           variant="outline"
           size="icon"
-          className="fixed bottom-6 right-6 z-50 bg-neutral-800 hover:bg-neutral-700 text-teal-500 border-teal-500"
+          className="fixed bottom-6 right-6 z-50 bg-neutral-800 hover:bg-neutral-700 text-purple-400 border-purple-400 hidden sm:flex"
         >
           <ArrowUp className="h-5 w-5" />
           <span className="sr-only">Scroll to top</span>

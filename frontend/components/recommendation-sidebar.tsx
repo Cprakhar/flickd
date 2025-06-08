@@ -89,34 +89,48 @@ export function RecommendationSidebar({
                     {recommendations.products.map((product) => (
                       <div
                         key={product.matched_product_id}
-                        className="flex items-start space-x-3 p-3 border rounded-lg bg-card"
+                        className="flex items-start space-x-3 p-3 border rounded-lg bg-card relative"
                       >
                         <div
                           className="relative group cursor-pointer"
                           onClick={() => handleImageClick(product.image_url || "/placeholder.svg")}
                         >
                           <Image
-                          src={product.image_url || "/placeholder.svg"}
-                          alt={product.title || product.type || "Product"}
-                          width={80}
-                          height={100}
-                          className="rounded-md object-cover aspect-[4/5]"
-                        />
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-md">
+                            src={product.image_url || "/placeholder.svg"}
+                            alt={product.title || product.type || "Product"}
+                            width={80}
+                            height={100}
+                            className="rounded-md object-cover aspect-[4/5]"
+                          />
+                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-md">
                             <Maximize className="h-6 w-6 text-white" />
                           </div>
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-medium text-sm">{product.title || product.type}</h4>
-                          <p className="text-xs text-muted-foreground capitalize">
+                          <h4 className="font-medium">{product.title || product.type}</h4>
+                          <p className="text-sm text-muted-foreground capitalize">
                             {product.type} - {product.color}
                           </p>
-                          <div className="mt-1">
+                          <div className="mt-8">
                             <Badge variant={product.match_type === "exact" ? "default" : "outline"} className="text-xs">
                               {product.match_type === "exact" ? "Exact Match" : "Similar Item"}
                             </Badge>
                           </div>
                         </div>
+                        {typeof product.confidence === "number" && (
+                          <span
+                            className="absolute bottom-2 right-2 text-xs text-white px-2 py-0.5 rounded font-semibold shadow"
+                            style={{
+                              background: product.confidence >= 0.85
+                                ? 'linear-gradient(90deg, #22c55e 0%, #16a34a 100%)' // green
+                                : product.confidence >= 0.7
+                                ? 'linear-gradient(90deg, #facc15 0%, #eab308 100%)' // yellow
+                                : 'linear-gradient(90deg, #ef4444 0%, #b91c1c 100%)' // red
+                            }}
+                          >
+                            {product.confidence.toFixed(2)}
+                          </span>
+                        )}
                       </div>
                     ))}
                   </div>

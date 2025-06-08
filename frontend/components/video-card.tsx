@@ -5,7 +5,7 @@ import type React from "react"
 import { useRef, useEffect, useState } from "react"
 import type { Video } from "@/lib/types"
 import { Button } from "@/components/ui/button"
-import { Sparkles, Play, Volume2, VolumeX, Heart, MessageSquare, Share2 } from "lucide-react"
+import { Sparkles, Play, Volume2, VolumeX, Heart, HeartIcon, MessageSquare, Share2 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils" // Ensure you have cn utility
 
@@ -22,6 +22,7 @@ export function VideoCard({ video, onRecommend, isIntersecting }: VideoCardProps
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
   const [isCaptionExpanded, setIsCaptionExpanded] = useState(false)
+  const [liked, setLiked] = useState(false)
 
   const captionIsPotentiallyLong = video.caption && video.caption.length > MAX_CAPTION_LENGTH_COLLAPSED
 
@@ -182,52 +183,60 @@ export function VideoCard({ video, onRecommend, isIntersecting }: VideoCardProps
       )}
 
       {/* Side Action Buttons */}
-      <div className="absolute right-2 bottom-16 sm:bottom-20 flex flex-col space-y-3 sm:space-y-4 pointer-events-auto">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleMute}
-          className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full"
-        >
-          {isMuted ? <VolumeX className="h-5 w-5 sm:h-6 sm:w-6" /> : <Volume2 className="h-5 w-5 sm:h-6 sm:w-6" />}
-          <span className="sr-only">{isMuted ? "Unmute" : "Mute"}</span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={(e) => e.stopPropagation()}
-          className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full"
-        >
-          <Heart className="h-5 w-5 sm:h-6 sm:w-6" />
-          <span className="sr-only">Like</span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={(e) => e.stopPropagation()}
-          className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full"
-        >
-          <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
-          <span className="sr-only">Comment</span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={(e) => e.stopPropagation()}
-          className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full"
-        >
-          <Share2 className="h-5 w-5 sm:h-6 sm:w-6" />
-          <span className="sr-only">Share</span>
-        </Button>
-        <Button
-          onClick={handleRecommendClick}
-          variant="outline"
-          className="text-white bg-teal-500/80 hover:bg-teal-500 border-teal-500 hover:text-white p-2 rounded-full flex flex-col items-center h-auto"
-        >
-          <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 mb-0.5" />
-          <span className="text-xs font-medium">Suggest</span>
-        </Button>
-      </div>
+      {!(isCaptionExpanded && captionIsPotentiallyLong) && (
+        <div className="absolute right-2 bottom-16 sm:bottom-20 flex flex-col items-center space-y-3 pointer-events-auto">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleMute}
+            className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full h-10 w-10 flex items-center justify-center"
+          >
+            {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+            <span className="sr-only">{isMuted ? "Unmute" : "Mute"}</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLiked((prev) => !prev);
+            }}
+            className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full h-10 w-10 flex items-center justify-center"
+          >
+            <Heart
+              className={liked ? "h-5 w-5 text-red-500" : "h-5 w-5"}
+              fill={liked ? "currentColor" : "none"}
+            />
+            <span className="sr-only">Like</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => e.stopPropagation()}
+            className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full h-10 w-10 flex items-center justify-center"
+          >
+            <MessageSquare className="h-5 w-5" />
+            <span className="sr-only">Comment</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => e.stopPropagation()}
+            className="text-white bg-black/30 hover:bg-black/50 p-2 rounded-full h-10 w-10 flex items-center justify-center"
+          >
+            <Share2 className="h-5 w-5" />
+            <span className="sr-only">Share</span>
+          </Button>
+          <Button
+            onClick={handleRecommendClick}
+            variant="outline"
+            className="text-white bg-purple-400/80 hover:bg-purple-500 border-purple-400 hover:text-white p-2 rounded-full h-10 w-10 flex items-center justify-center"
+          >
+            <Sparkles className="h-4 w-4" />
+            <span className="sr-only">Suggest</span>
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

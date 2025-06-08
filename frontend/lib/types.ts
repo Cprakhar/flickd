@@ -15,6 +15,7 @@ export interface ProductRecommendation {
   matched_product_id: string
   match_type: "exact" | "similar"
   image_url: string // Added for display
+  confidence?: number // Confidence score for product match
 }
 
 export interface RecommendationData {
