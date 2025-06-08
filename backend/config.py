@@ -29,6 +29,9 @@ try:
     # Other config values can be added here as needed
     CLIP_MODEL_NAME = "openai/clip-vit-large-patch14"
 
+    # Add this to make GROQ_API_KEY available in your backend
+    GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+
     logger.info("Configuration paths set up successfully.")
 except Exception as e:
     logger.error(f"Failed to set up configuration paths: {e}", exc_info=True)
@@ -53,6 +56,7 @@ Attributes:
     CATALOG_EMBEDDINGS_PATH (str): Path to the catalog CLIP embeddings file.
     CATALOG_PRODUCT_IDS_PATH (str): Path to the catalog product IDs file.
     CLIP_MODEL_NAME (str): Name of the CLIP model to use.
+    GROQ_API_KEY (str): GROQ API key for backend access.
 
 Logs configuration setup and errors. Raises no exceptions on import; logs errors instead.
 """

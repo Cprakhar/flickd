@@ -10,12 +10,11 @@ from utils.logger import get_logger
 from utils.download import download_video
 from components.vibe import vibe_classification
 from utils.extract_catalog_embeddings import extract_and_save_catalog_embeddings
-from config import FRAMES_DIR, YOLO_MODEL_PATH, TRANSCRIPTS_DIR, CLIP_MODEL_NAME, CATALOG_EMBEDDINGS_PATH, CATALOG_PRODUCT_IDS_PATH, CATALOG_CSV_PATH, MODELS_DIR, OUTPUTS_DIR, VIBES_LIST_PATH
+from config import FRAMES_DIR, YOLO_MODEL_PATH, TRANSCRIPTS_DIR, CLIP_MODEL_NAME, CATALOG_EMBEDDINGS_PATH, CATALOG_PRODUCT_IDS_PATH, CATALOG_CSV_PATH, MODELS_DIR, OUTPUTS_DIR, VIBES_LIST_PATH, GROQ_API_KEY
 from utils.checks import file_exists, directory_exists
 from dataclasses import dataclass
 
 logger = get_logger(__name__)
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", None)
 
 @dataclass
 class PipelineConfig:

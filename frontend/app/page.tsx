@@ -94,7 +94,7 @@ export default function HomePage() {
       if (result.status === "pending" && result.video_id) {
         const pollStatus = async () => {
           let attempts = 0
-          const maxAttempts = 60 * 2 // e.g. 60 x 1s = 1 minute
+          const maxAttempts = 60 * 5 // e.g. 60 x 1s = 1 minute
           while (attempts < maxAttempts) {
             await new Promise((res) => setTimeout(res, 1000))
             const statusRes = await fetch(`${backendUrl}/api/recommendations/status/${result.video_id}`)

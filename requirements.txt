@@ -1,10 +1,16 @@
 numpy
 pandas
 scikit-learn
+opencv-python
+ultralytics
 matplotlib
 torch
 torchvision
 transformers
 fastapi
 faiss-cpu
-whisper
+openai-whisper
+uvicorn
+moviepy
+requests
+Pillow
