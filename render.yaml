@@ -2,9 +2,6 @@ services:
   - type: web
     name: flickd-backend
     runtime: docker
-    ipAllowList:
-      - source: 0.0.0.0/0
-        description: everywhere
     dockerfilePath: backend/Dockerfile
     repo: https://github.com/Cprakhar/flickd.git
     rootDir: backend
@@ -24,9 +21,9 @@ services:
     dockerfilePath: frontend/Dockerfile
     repo: https://github.com/Cprakhar/flickd.git
     rootDir: frontend
-    ipAllowList:
-      - source: 0.0.0.0/0
-        description: everywhere
+    plan: free
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: NEXT_PUBLIC_API_URL
         value: https://flickd-backend.onrender.com # Update after backend deploy
