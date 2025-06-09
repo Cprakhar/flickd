@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import type { Video, VideosApiResponse } from "@/lib/types"
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const allVideos: Video[] = [
   {

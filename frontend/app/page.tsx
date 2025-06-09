@@ -10,7 +10,7 @@ import type { Video, RecommendationData, VideosApiResponse, RecommendationApiRes
 import { Button } from "@/components/ui/button"
 import { ArrowUp } from "lucide-react"
 
-const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000" // Adjust if your API is hosted elsewhere
+const backendUrl = process.env.NEXT_PUBLIC_API_URL // Adjust if your API is hosted elsewhere
 
 export default function HomePage() {
   const [initialVideos, setInitialVideos] = useState<Video[]>([])

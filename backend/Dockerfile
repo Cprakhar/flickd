@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /app/backend
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -19,10 +19,10 @@ COPY requirements.txt ./
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy backend code
-COPY backend/ ./backend/
+COPY . .
 
 # Expose FastAPI port
-EXPOSE 8000
+EXPOSE 8080
 
 # Start FastAPI server
-CMD ["uvicorn", "api.server:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "api.server:app", "--host", "0.0.0.0", "--port", "8080"]

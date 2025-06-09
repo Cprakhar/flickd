@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL
     const res = await fetch(`${backendUrl}/api/recommendations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

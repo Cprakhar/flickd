@@ -1,17 +1,13 @@
 services:
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: backend
+      dockerfile: ./Dockerfile
     container_name: flickd-backend
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
-      - ./backend:/app/backend
-      - ./backend/outputs:/app/backend/outputs
-      - ./backend/models:/app/backend/models
-      - ./backend/data:/app/backend/data
-      - ./backend/logs:/app/backend/logs
+      - .:/app/backend
     environment:
       - PYTHONUNBUFFERED=1
       - GROQ_API_KEY=${GROQ_API_KEY}
@@ -21,8 +17,10 @@ services:
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: frontend
+      dockerfile: ./Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
     container_name: flickd-frontend
     ports:
       - "3000:3000"
