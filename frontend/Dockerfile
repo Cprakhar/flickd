@@ -5,7 +5,9 @@ WORKDIR /app
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
-COPY . .
+COPY ./frontend/package.json ./package.json
+COPY ./frontend/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY ./frontend/ .
 RUN npm install
 RUN npm run build
 
