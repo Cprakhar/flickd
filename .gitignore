@@ -4,6 +4,7 @@ tech-spec.md
 # Backend/outputs and models
 backend/data/detections/
 backend/data/crops/
+backend/models/hf_cache/
 
 # Python cache and compiled files
 __pycache__/
@@ -43,7 +44,6 @@ frontend/*.md
 data/crops/
 
 # Ignore experiment and run folders
-runs/
 logs/
 
 # Ignore .env files

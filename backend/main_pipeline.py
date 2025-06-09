@@ -8,7 +8,7 @@ from components.transcribe import transcribe_audio
 from components.match import match_product
 from utils.logger import get_logger
 from utils.download import download_video
-from components.vibe import vibe_classification
+from components.vibe import vibe_classification_nlp, vibe_classification
 from utils.extract_catalog_embeddings import extract_and_save_catalog_embeddings
 from config import FRAMES_DIR, YOLO_MODEL_PATH, TRANSCRIPTS_DIR, CLIP_MODEL_NAME, CATALOG_EMBEDDINGS_PATH, CATALOG_PRODUCT_IDS_PATH, CATALOG_CSV_PATH, MODELS_DIR, OUTPUTS_DIR, VIBES_LIST_PATH, GROQ_API_KEY
 from utils.checks import file_exists, directory_exists
@@ -110,8 +110,8 @@ class FlickdPipeline:
             caption,
             transcript_file,
             vibes_list=vibes_list,
-            groq_api_key=GROQ_API_KEY,
-            detections=detections
+            detections=detections,
+            groq_api_key=GROQ_API_KEY
         )
 
     def detect_and_match_products(self, frames_path, catalog_embeddings, catalog_product_ids, catalog_csv):
@@ -175,6 +175,8 @@ class FlickdPipeline:
             video_id, video_capture, tmp_video_file = self.download_video_and_get_id(video_url)
             # Transcribe audio (modularized)
             transcript_path = self.transcribe_audio(tmp_video_file, video_id)
+            if not transcript_path or not os.path.exists(transcript_path):
+                raise Exception(f"Transcript file was not created for video_id {video_id}.")
             # Extract frames (modularized)
             self.extract_frames(video_id, video_capture)
             # Prepare catalog embeddings (modularized)

@@ -2,8 +2,7 @@
   "video_id": "reel_003",
   "vibes": [
     "cottagecore",
-    "coquette",
-    "party glam"
+    "coquette"
   ],
   "products": [
     {
@@ -18,7 +17,7 @@
     {
       "matched_product_id": "15209",
       "match_type": "similar",
-      "confidence": 0.857,
+      "confidence": 0.795,
       "type": "trouser",
       "color": "black",
       "title": "Lace Detail Flared Pants",
@@ -81,101 +80,11 @@
     {
       "matched_product_id": "42056",
       "match_type": "similar",
-      "confidence": 0.849,
+      "confidence": 0.843,
       "type": "skirt",
       "color": "off white",
       "title": "Striped Tiered Midi Skirt",
       "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/DSCF1234_73f68934-b885-49e7-a35c-f79f584f80e0_512x.jpg?v=1740738192"
-    },
-    {
-      "matched_product_id": "15166",
-      "match_type": "similar",
-      "confidence": 0.792,
-      "type": "trouser",
-      "color": "black",
-      "title": "Trucotton Regular Paperbag Waist Pants",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/18th_dec_virgio-2015_512x.jpg?v=1736147599"
-    },
-    {
-      "matched_product_id": "16234",
-      "match_type": "similar",
-      "confidence": 0.8,
-      "type": "dress",
-      "color": "blue",
-      "title": "Empire Flare Cotton Dress",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/26thJulyVirgio-0451_1600x.jpg?v=1722602089"
-    },
-    {
-      "matched_product_id": "15218",
-      "match_type": "similar",
-      "confidence": 0.821,
-      "type": "shorts",
-      "color": "black",
-      "title": "Black Ric Rac Lace Skort",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/4thDEC2024Virgio-0056_512x.jpg?v=1738852688"
-    },
-    {
-      "matched_product_id": "16066",
-      "match_type": "similar",
-      "confidence": 0.823,
-      "type": "co-ord",
-      "color": "green",
-      "title": "Pleated Co-Ord",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/9thaugVirgio5687_512x.jpg?v=1724239326"
-    },
-    {
-      "matched_product_id": "15662",
-      "match_type": "similar",
-      "confidence": 0.817,
-      "type": "dress",
-      "color": "white",
-      "title": "Poplin Blouson-Sleeve Dress",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/23rd_Aug_Virgio2472_512x.jpg?v=1726641092"
-    },
-    {
-      "matched_product_id": "17108",
-      "match_type": "similar",
-      "confidence": 0.784,
-      "type": "co-ord",
-      "color": "black",
-      "title": "Off Shoulder Co-Ords",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/TheDateCollection_01521_512x.jpg?v=1705750837"
-    },
-    {
-      "matched_product_id": "15444",
-      "match_type": "similar",
-      "confidence": 0.799,
-      "type": "co-ord",
-      "color": "beige",
-      "title": "Cotton Vest And Skirt Set",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/sep10virgio1343_512x.jpg?v=1730214946"
-    },
-    {
-      "matched_product_id": "17107",
-      "match_type": "similar",
-      "confidence": 0.794,
-      "type": "co-ord",
-      "color": "black",
-      "title": "Off Shoulder Co-Ords",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/TheDateCollection_0572_512x.jpg?v=1705750934"
-    },
-    {
-      "matched_product_id": "15143",
-      "match_type": "similar",
-      "confidence": 0.83,
-      "type": "dress",
-      "color": "black",
-      "title": "Modal+ Asymmetrical Hem Frill Dress",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/VIRGIO_MANUSHI_75_512x.jpg?v=1733925856"
-    },
-    {
-      "matched_product_id": "42105",
-      "match_type": "similar",
-      "confidence": 0.85,
-      "type": "skirt",
-      "color": "white",
-      "title": "Jaipur Block Print Flared Skirt",
-      "image_url": "https://cdn.shopify.com/s/files/1/0785/1674/8585/files/8102355_512x.jpg?v=1739775891"
     }
   ]
 }

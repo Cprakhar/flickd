@@ -19,7 +19,7 @@ COPY ./backend/requirements.txt ./requirements.txt
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy backend code
-COPY ./backend .
+COPY ./backend/ .
 
 # Expose FastAPI port
 EXPOSE 8080

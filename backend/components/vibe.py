@@ -109,3 +109,46 @@ def vibe_classification(hashtags, caption, audio_transcript, vibes_list, groq_ap
 
     logger.info(f"Vibes classified: {llm_vibes_list}")
     return list(llm_vibes_list)
+
+def vibe_classification_nlp(hashtags, caption, audio_transcript, vibes_list, detections=None, top_k=3, model_name="facebook/bart-large-mnli"):
+    """
+    Classifies vibes for a video using HuggingFace Transformers zero-shot-classification.
+    If no objects are detected (detections is an empty list), returns an empty list.
+
+    Args:
+        hashtags (list[str] or str): List of hashtags or a single hashtag string.
+        caption (str): Caption text for the video.
+        audio_transcript (list[str] or str): Transcript of the video's audio, as a list of lines or a single string.
+        vibes_list (list[str]): List of valid vibe names to match against.
+        detections (list, optional): List of detected objects for the video. If provided and empty, vibes will be empty.
+        top_k (int): Number of top vibes to return.
+        model_name (str): HuggingFace model to use for zero-shot-classification.
+
+    Returns:
+        list[str]: List of classified vibes (strings). Returns an empty list if no objects are detected or if classification fails.
+    """
+    from transformers import pipeline
+    logger.info("Starting NLP-based vibe classification (Transformers)...")
+    if detections is not None and len(detections) == 0:
+        logger.info("No objects detected for this video. Returning empty vibes list.")
+        return []
+    try:
+        text = caption or ""
+        if audio_transcript:
+            if isinstance(audio_transcript, list):
+                text += "\n" + " ".join(audio_transcript)
+            else:
+                text += "\n" + audio_transcript
+        if hashtags:
+            if isinstance(hashtags, list):
+                text += "\n" + " ".join(hashtags)
+            else:
+                text += "\n" + hashtags
+        classifier = pipeline("zero-shot-classification", model=model_name)
+        result = classifier(text, vibes_list, multi_label=True)
+        sorted_vibes = [v for _, v in sorted(zip(result['scores'], result['labels']), reverse=True)]
+        logger.info(f"NLP vibes classified: {sorted_vibes[:top_k]}")
+        return sorted_vibes[:top_k]
+    except Exception as e:
+        logger.error(f"NLP vibe classification failed: {e}", exc_info=True)
+        return []
